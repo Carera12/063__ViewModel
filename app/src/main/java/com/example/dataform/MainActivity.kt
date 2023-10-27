@@ -138,6 +138,24 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     val uiState by cobaViewModel.uiState.collectAsState()
     dataForm = uiState;
 
+    Row {
+        Image(
+            painter = painterResource(id = R.drawable.baseline_arrow_back_24),
+            contentDescription = "",
+            modifier = Modifier.size(20.dp)
+        )
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Register", modifier = Modifier.padding(10.dp))
+        }
+    }
+
+
+
+
     OutlinedTextField(
         value = textNama,
         singleLine = true,
@@ -201,38 +219,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
 
 }
 
-@Composable
-fun SelectStatus(
-    options: List<String>,
-    onStatusSelectionChanged: (String) -> Unit = {}
-) {
-    var selectedStatus by rememberSaveable { mutableStateOf("") }
 
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text("Status:")
-        options.forEach { item ->
-            Row(
-                modifier = Modifier.selectable(
-                    selected = selectedStatus == item,
-                    onClick = {
-                        selectedStatus = item
-                        onStatusSelectionChanged(item)
-                    }
-                ),
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                RadioButton(
-                    selected = selectedStatus == item,
-                    onClick = {
-                        selectedStatus = item
-                        onStatusSelectionChanged(item)
-                    }
-                )
-                Text(item)
-            }
-        }
-    }
-}
 
 
 
