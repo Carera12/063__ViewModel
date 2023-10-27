@@ -152,7 +152,20 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             Text(text = "Register", modifier = Modifier.padding(10.dp))
         }
     }
-
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        TextButton(
+            onClick = {
+                cobaViewModel.insertData(textNama, textTlp, textAlamat,textEmail, dataForm.sex)
+            }
+        ) {
+            Text(
+                text = "Create Your Akun",
+                modifier = Modifier.padding(10.dp),
+            )
+        }
+    }
 
 
 
