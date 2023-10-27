@@ -298,6 +298,14 @@ fun TextHasil(namanya: String,telponnya: String, jenisnya: String, emailnya: Str
             text = "jenis Kelamin : " + jenisnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp))
+        Text(
+            text = "Email : " + emailnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
+        Text(
+            text = "Alamat : " + alamatnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
 
     }
 }
