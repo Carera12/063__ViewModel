@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.checkScrollableContainerConstraints
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -190,16 +191,10 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             Text(text = "Register", modifier = Modifier.padding(10.dp))
         }
     }
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Create Your Akun",
-
-            modifier = Modifier.padding(10.dp),
-        )
-    }
+    Text(
+        text = "Create Your Akun",
+        modifier = Modifier.padding(10.dp),
+    )
 
 
 
@@ -280,9 +275,11 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
 @Composable
 fun TextHasil(namanya: String,telponnya: String, jenisnya: String, emailnya: String, alamatnya: String){
     ElevatedCard (
+
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
         ),
+
         modifier = Modifier
             .fillMaxWidth()
     ){
@@ -301,11 +298,11 @@ fun TextHasil(namanya: String,telponnya: String, jenisnya: String, emailnya: Str
         Text(
             text = "Email : " + emailnya,
             modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp))
+                .padding(horizontal = 10.dp, vertical = 4.dp))
         Text(
             text = "Alamat : " + alamatnya,
             modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp))
+                .padding(horizontal = 10.dp, vertical = 6.dp))
 
     }
 }
