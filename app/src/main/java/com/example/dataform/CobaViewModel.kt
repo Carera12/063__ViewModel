@@ -1,6 +1,5 @@
 package com.example.dataform
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -22,13 +21,13 @@ class CobaViewModel : ViewModel (){
         private set
     var jenisKl: String by mutableStateOf("")
         private set
-    var statusS: String by mutableStateOf("")
+    var statusO: String by mutableStateOf("")
         private set
 
     private val _uiState = MutableStateFlow(DataForm())
     val uiState: StateFlow<DataForm> = _uiState.asStateFlow()
 
-    fun insertData(nm: String, tlp: String,alm: String,mail:String, jk: String) {
+    fun insertData(nm: String, tlp: String, alm: String, mail: String, jk: String, status: String) {
         namaUSR=nm;
         noTlp=tlp;
         Alamatt=alm;

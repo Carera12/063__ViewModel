@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.checkScrollableContainerConstraints
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +25,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -37,7 +35,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -254,7 +251,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
-            cobaViewModel.insertData(textNama, textTlp, textAlamat,textEmail, dataForm.sex)
+            cobaViewModel.insertData(textNama, textTlp, textAlamat,textEmail, dataForm.sex, dataForm.status)
         }
     ) {
         Text(
@@ -266,14 +263,15 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     TextHasil(
         namanya = cobaViewModel.namaUSR,
         telponnya =cobaViewModel.noTlp,
+        emailnya = cobaViewModel.Email,
         jenisnya = cobaViewModel.jenisKl,
-        alamatnya = cobaViewModel.Alamatt,
-        emailnya = cobaViewModel.Email
+        statusnya = cobaViewModel.statusO,
+        alamatnya = cobaViewModel.Alamatt
         )
 
 }
 @Composable
-fun TextHasil(namanya: String,telponnya: String, jenisnya: String, emailnya: String, alamatnya: String){
+fun TextHasil(namanya: String,telponnya: String, jenisnya: String, emailnya: String,statusnya: String, alamatnya: String){
     ElevatedCard (
 
         elevation = CardDefaults.cardElevation(
@@ -299,6 +297,10 @@ fun TextHasil(namanya: String,telponnya: String, jenisnya: String, emailnya: Str
             text = "Email : " + emailnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 4.dp))
+        Text(
+            text = "Status : " + statusnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
         Text(
             text = "Alamat : " + alamatnya,
             modifier = Modifier
