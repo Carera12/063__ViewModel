@@ -6,4 +6,9 @@ object DataSource {
         R.string.laki,
         R.string.wanita
     )
+
+    val statusS = listOf(
+        R.string.nikah,
+        R.string.nonikah
+    )
 }

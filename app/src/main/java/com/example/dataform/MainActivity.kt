@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dataform.Data.DataForm
 import com.example.dataform.Data.DataSource.jenis
+import com.example.dataform.Data.DataSource.statusS
 import com.example.dataform.ui.theme.DataFormTheme
 
 class MainActivity : ComponentActivity() {
@@ -93,7 +94,44 @@ fun SelectJK(
     var selectedValue by rememberSaveable { mutableStateOf("")}
 
     Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = "Jenis Kelamin")
+        Text(text = "Jenis Kelamin: ")
+        Row {
+
+
+            options.forEach { item ->
+                Row(
+                    modifier = Modifier.selectable(
+                        selected = selectedValue == item,
+                        onClick = {
+                            selectedValue = item
+                            onSelectionChanged(item)
+                        }
+                    ),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    RadioButton(
+                        selected = selectedValue == item,
+                        onClick = {
+                            selectedValue = item
+                            onSelectionChanged(item)
+                        }
+                    )
+                    Text(item)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun SelectStatus(
+    options: List<String>,
+    onSelectionChanged: (String) -> Unit = {}
+){
+    var selectedValue by rememberSaveable { mutableStateOf("")}
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "Status: ")
         Row {
 
 
@@ -154,17 +192,13 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     }
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextButton(
-            onClick = {
-                cobaViewModel.insertData(textNama, textTlp, textAlamat,textEmail, dataForm.sex)
-            }
-        ) {
-            Text(
-                text = "Create Your Akun",
-                modifier = Modifier.padding(10.dp),
-            )
-        }
+        Text(
+            text = "Create Your Akun",
+
+            modifier = Modifier.padding(10.dp),
+        )
     }
 
 
@@ -205,6 +239,10 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         options = jenis.map {id -> context.resources.getString(id)},
         onSelectionChanged = { cobaViewModel.setJenisK(it)}
     )
+    SelectStatus(
+        options = statusS.map {id -> context.resources.getString(id)},
+        onSelectionChanged = { cobaViewModel.setStatus(it)}
+    )
 
 
 
@@ -229,7 +267,39 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             fontSize = 16.sp
         )
     }
+    Spacer(modifier = Modifier.height(10.dp))
+    TextHasil(
+        namanya = cobaViewModel.namaUSR,
+        telponnya =cobaViewModel.noTlp,
+        jenisnya = cobaViewModel.jenisKl,
+        alamatnya = cobaViewModel.Alamatt,
+        emailnya = cobaViewModel.Email
+        )
 
+}
+@Composable
+fun TextHasil(namanya: String,telponnya: String, jenisnya: String, emailnya: String, alamatnya: String){
+    ElevatedCard (
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+    ){
+        Text(
+            text = "Nama : " + namanya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 4.dp))
+        Text(
+            text = "Telepon : " + telponnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
+        Text(
+            text = "jenis Kelamin : " + jenisnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
+
+    }
 }
 
 
